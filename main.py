@@ -7,10 +7,12 @@ st.title("Customer Segmentation App")
 st.write ("Group Customers for better marketing")
 
 df = pd.read_csv("Mall_Customers.csv")
+df.columns = df.columns.str.strip()
+
 
 k = st.slider("How many customer groups?", 2, 6, 3)
 
-X = df[['Annual Income (k$)','Spending Score (1-100']]
+X = df[['Annual Income (k$)','Spending Score (1-100)']]
 kmeans = KMeans (n_clusters=k, random_state=42)
 df['Group'] = kmeans.fit_predict(X)
 
@@ -20,7 +22,7 @@ st.dataframe(df.head())
 fig, ax = plt.subplots()
 for group in range(k):
     d = df[df['Group'] == group]
-    ax.scatter(d['Annual Income (k$)'], d['Spending Score (1-100'], label = f"Group{group}")
+    ax.scatter(d['Annual Income (k$)'], d['Spending Score (1-100)'], label = f"Group{group}")
 ax.set_xlabel("Income")
 ax.set_ylabel("Spending Score")
 ax.legend()
