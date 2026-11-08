@@ -6,7 +6,7 @@ from sklearn.cluster import KMeans
 st.title("Customer Segmentation App")
 st.write ("Group Customers for better marketing")
 
-df = pd.read_csv("Mall_Customers(1).csv")
+df = pd.read_csv("Mall_Customers.csv")
 
 k = st.slider("How many customer groups?", 2, 6, 3)
 
